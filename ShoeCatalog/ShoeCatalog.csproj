@@ -71,7 +71,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Product.cs" />
-    <Compile Include="ProductCardViewModel.cs" />
     <Compile Include="ProductViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
@@ -103,6 +102,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Icon.JPG" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="IconDark.JPG" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Data;
-using System.Data.SqlClient;
+using ShoeCatalog;
 using System.IO;
 using System.Windows;
 using System.Windows.Media;

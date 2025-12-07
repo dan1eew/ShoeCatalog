@@ -1,4 +1,5 @@
-﻿using System;
+﻿// ProductViewModel.cs (один файл)
+using System;
 using System.Windows;
 using System.Windows.Media;
 
@@ -7,6 +8,7 @@ namespace ShoeCatalog
     public class ProductViewModel
     {
         private Product product;
+        private bool isDarkTheme = false;
 
         public ProductViewModel(Product product)
         {
@@ -32,9 +34,15 @@ namespace ShoeCatalog
             get
             {
                 if (QuantityInStock == 0)
-                    return new SolidColorBrush(Color.FromArgb(255, 173, 216, 230)); // Голубой
+                {
+                    return isDarkTheme ?
+                        new SolidColorBrush(Color.FromRgb(30, 90, 120)) : // Темный голубой
+                        new SolidColorBrush(Color.FromArgb(255, 173, 216, 230)); // Светлый голубой
+                }
                 if (CurrentDiscount > 15)
+                {
                     return new SolidColorBrush((Color)ColorConverter.ConvertFromString("#2E8B57")); // Зеленый
+                }
                 return Brushes.Transparent;
             }
         }
@@ -42,13 +50,30 @@ namespace ShoeCatalog
         public System.Windows.TextDecorationCollection PriceDecoration =>
             CurrentDiscount > 0 ? TextDecorations.Strikethrough : null;
 
-        public Brush PriceColor =>
-            CurrentDiscount > 0 ? Brushes.Red : Brushes.Black;
+        public Brush PriceColor
+        {
+            get
+            {
+                if (CurrentDiscount > 0)
+                    return isDarkTheme ?
+                        new SolidColorBrush(Color.FromRgb(255, 100, 100)) : // Светло-красный для темной темы
+                        new SolidColorBrush(Color.FromRgb(255, 0, 0)); // Красный для светлой темы
+                return isDarkTheme ? Brushes.White : Brushes.Black;
+            }
+        }
+
+        public Brush FinalPriceColor =>
+            isDarkTheme ? Brushes.White : Brushes.Green;
 
         public Visibility DiscountVisibility =>
             CurrentDiscount > 0 ? Visibility.Visible : Visibility.Collapsed;
 
         public string PriceDisplay =>
             CurrentDiscount > 0 ? $"{Price}₽ → {FinalPrice:0}₽" : $"{Price:0}₽";
+
+        public void UpdateTheme(bool darkTheme)
+        {
+            isDarkTheme = darkTheme;
+        }
     }
 }

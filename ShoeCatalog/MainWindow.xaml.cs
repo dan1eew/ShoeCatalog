@@ -14,6 +14,7 @@ namespace ShoeCatalog
         private bool isDarkTheme = false;
         private List<Product> products = new List<Product>();
         private DispatcherTimer timer;
+
         public MainWindow()
         {
             InitializeComponent();
@@ -52,7 +53,8 @@ namespace ShoeCatalog
                 var viewModels = new List<ProductViewModel>();
                 foreach (var product in products)
                 {
-                    viewModels.Add(new ProductViewModel(product));
+                    var vm = new ProductViewModel(product);
+                    viewModels.Add(vm);
                 }
 
                 ListViewProducts.ItemsSource = viewModels;
@@ -70,10 +72,8 @@ namespace ShoeCatalog
             // Проверка на null
             if (ListViewProducts == null)
             {
-                return; 
+                return;
             }
-      
-            isDarkTheme = dark;
 
             if (dark)
             {
@@ -82,6 +82,15 @@ namespace ShoeCatalog
                 ListViewProducts.Background = new SolidColorBrush(Color.FromRgb(40, 40, 40));
                 ListViewProducts.Foreground = Brushes.White;
                 ListViewProducts.BorderBrush = new SolidColorBrush(Color.FromRgb(70, 70, 70));
+
+                // Изменить фон верхней панели на темный
+                TopPanel.Background = new SolidColorBrush(Color.FromRgb(30, 30, 30));
+
+                // Изменить фон нижней панели на темный
+                BottomPanelText.Background = new SolidColorBrush(Color.FromRgb(30, 30, 30));
+
+                // Изменить цвет текста на белый во всех текстовых элементах
+                ChangeTextColors(true);
 
                 // Обновляем цвета строк
                 var style = new Style(typeof(ListViewItem));
@@ -113,6 +122,9 @@ namespace ShoeCatalog
                 style.Triggers.Add(selectedTrigger);
 
                 ListViewProducts.ItemContainerStyle = style;
+
+                // Обновить тему во всех ViewModel
+                UpdateViewModelsTheme(dark);
             }
             else
             {
@@ -121,6 +133,15 @@ namespace ShoeCatalog
                 ListViewProducts.Background = Brushes.White;
                 ListViewProducts.Foreground = Brushes.Black;
                 ListViewProducts.BorderBrush = Brushes.LightGray;
+
+                // Восстановить фон верхней панели на белый
+                TopPanel.Background = Brushes.White;
+
+                // Восстановить фон нижней панели на белый
+                BottomPanelText.Background = Brushes.White;
+
+                // Изменить цвет текста на черный во всех текстовых элементах
+                ChangeTextColors(false);
 
                 // Стиль по умолчанию
                 var style = new Style(typeof(ListViewItem));
@@ -152,10 +173,52 @@ namespace ShoeCatalog
                 style.Triggers.Add(selectedTrigger);
 
                 ListViewProducts.ItemContainerStyle = style;
+
+                // Обновить тему во всех ViewModel
+                UpdateViewModelsTheme(dark);
             }
 
             // Обновляем отображение
             ListViewProducts.Items.Refresh();
+        }
+
+        // Обновить тему во всех ViewModel - РАСКОММЕНТИРУЙТЕ ЭТОТ МЕТОД!
+        private void UpdateViewModelsTheme(bool dark)
+        {
+            if (ListViewProducts.ItemsSource is IEnumerable<ProductViewModel> viewModels)
+            {
+                foreach (var vm in viewModels)
+                {
+                    vm.UpdateTheme(dark);
+                }
+            }
+        }
+
+        // Изменить цвета текста в зависимости от темы
+        private void ChangeTextColors(bool dark)
+        {
+            if (dark)
+            {
+                // Темная тема - белый цвет текста
+                TitleTextBlock.Foreground = Brushes.White;
+                ThemeTextBlock.Foreground = Brushes.White;
+                LightThemeRadio.Foreground = Brushes.White;
+                DarkThemeRadio.Foreground = Brushes.White;
+                TimeTextBlock.Foreground = Brushes.White;
+                IDTextBlock.Foreground = Brushes.White;
+                VerTextLabel.Foreground = Brushes.White;
+            }
+            else
+            {
+                // Светлая тема - черный цвет текста
+                TitleTextBlock.Foreground = Brushes.Black;
+                ThemeTextBlock.Foreground = Brushes.Black;
+                LightThemeRadio.Foreground = Brushes.Black;
+                DarkThemeRadio.Foreground = Brushes.Black;
+                TimeTextBlock.Foreground = Brushes.Black;
+                IDTextBlock.Foreground = Brushes.Black;
+                VerTextLabel.Foreground = Brushes.Black;
+            }
         }
 
         // Смена темы, RadioButton
@@ -214,6 +277,5 @@ namespace ShoeCatalog
             int ID = random.Next(10000, 99999);
             IDTextBlock.Text = ($"Ваш ID: {ID}");
         }
-
     }
 }
