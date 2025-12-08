@@ -8,7 +8,7 @@ namespace ShoeCatalog
     public static class Database
     {
         private static readonly string connectionString =
-            @"Data Source=(LocalDB)\6;AttachDbFilename=|DataDirectory|\TableProducts.mdf;Integrated Security=True";
+            @"Data Source=(LocalDB)\6;AttachDbFilename=|DataDirectory|TableProducts.mdf;Integrated Security=True";
 
 
         ///<summary>Получает список товаров из базы данных</summary>

@@ -68,14 +68,14 @@ namespace ShoeCatalog
             try
             {
                 LoadProducts();
-                ApplyTheme(_isDarkTheme);
-                MessageBox.Show($"Данные успешно обновлены!\nВремя обновления: {DateTime.Now}",
-                    "Обновление", MessageBoxButton.OK, MessageBoxImage.Information);
+                ApplyTheme(_isDarkTheme);  
             }
             catch (Exception ex)
             {
                 ShowError("Ошибка при обновлении", ex.Message);
             }
+            //MessageBox.Show($"Данные успешно обновлены!\nВремя обновления: {DateTime.Now}",
+            //        "Обновление", MessageBoxButton.OK, MessageBoxImage.Information);
         }
 
         /// <summary>Применяет выбранную тему оформления</summary>
