@@ -26,10 +26,13 @@ namespace ShoeCatalog
 
         /// <summary>Финальная цена со скидкой</summary>
         public decimal FinalPrice => Price * (1 - CurrentDiscount / 100);
+
         /// <summary>Есть ли скидка</summary>
         public bool HasDiscount => CurrentDiscount > 0;
+
         /// <summary>Большая ли скидка (>15%)</summary>
         public bool HasBigDiscount => CurrentDiscount > 15;
+
         /// <summary>Товар отсутствует на складе</summary>
         public bool OutOfStock => QuantityInStock == 0;
   
@@ -182,12 +185,10 @@ namespace ShoeCatalog
                 return new Product();
             }
         }
-
         private static T GetValue<T>(DataRow row, string column)
         {
             return row[column] != DBNull.Value ? (T)Convert.ChangeType(row[column], typeof(T)) : default;
         }
-
         private static string GetValue(DataRow row, string column, string defaultValue)
         {
             return row[column] != DBNull.Value ? row[column].ToString() : defaultValue;
