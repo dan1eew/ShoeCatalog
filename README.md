@@ -5,7 +5,7 @@
   1. Загрузка zip-файла => распаковка
   2. Из папки 12, находящаяся внутри проекта, вытащить базу данных "TableProducts.mdf" и перекинуть в папку Debug "ShoeCatalog\ShoeCatalog\bin\Debug"
   3. Запустить программу "ShoeCatalog\ShoeCatalog.slnx", паралелльно запустив sqllocaldb (комбинация win + r => вводим cmd)
-  4. В командной строке ввести команды: sqllocaldb create 5, дальше sqllocaldb start 5
+  4. В командной строке ввести команды: sqllocaldb create 5, => sqllocaldb start 5
   5. Дальше запускаем программу и удостоверяемся что он работает.
 
 `Частые ошибки:`
