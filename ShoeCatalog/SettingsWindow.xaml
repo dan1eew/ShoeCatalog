@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ShoeCatalog"
         mc:Ignorable="d" WindowStartupLocation="CenterScreen"
-        ResizeMode="NoResize" Width="450" Height="400" FontFamily="Times New Roman" FontSize="14">
+        ResizeMode="NoResize" Width="370" Height="400" FontFamily="Times New Roman" FontSize="14">
     
     <Grid Margin="10">
         <Grid.RowDefinitions>
@@ -19,8 +19,8 @@
                    Text="Выберите, какие столбцы отображать в списке товаров" 
                    TextWrapping="Wrap" 
                    Margin="0,0,0,10"
-                   TextAlignment="Center"/>
-
+                   TextAlignment="Center" FontSize="14"/>
+       
         <!-- Список столбцов -->
         <Border Grid.Row="1" 
                 BorderBrush="LightGray" 
@@ -35,23 +35,20 @@
 
         <!-- Кнопки -->
         <StackPanel Grid.Row="2" 
-                    Orientation="Horizontal" 
-                    HorizontalAlignment="Right">
-            <Button Content="Выбрать все" 
-                    Click="SelectAll_Click"  Background="#00FA9A" Padding="10,5" HorizontalAlignment="Right" Height="30" Margin="0,0,10,0"/>
-            <Button Content="По умолчанию" 
-                    Click="Default_Click"  Background="#FFBFBFBF" Padding="10,5" HorizontalAlignment="Right" Height="30"/>
+                    HorizontalAlignment="Right" Orientation="Horizontal">
+            <RadioButton IsChecked="True" Content="Default" Checked="Default" VerticalAlignment="Center" Margin="0,0,10,0" BorderBrush="Black" />
+            <RadioButton IsChecked="False" Content="All" Checked="SelectAll" HorizontalAlignment="Center" VerticalAlignment="Center" BorderBrush="Black" />
         </StackPanel>
-
+        
         <StackPanel Grid.Row="3" 
                     Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
             <Button Content="ОК" 
                     Click="OK_Click"
                     IsDefault="True"  Background="#00FA9A" 
-                    Padding="10,5" HorizontalAlignment="Left" Height="30"/>
+                    Padding="10,0,10,0" HorizontalAlignment="Left" Height="25" VerticalContentAlignment="Center"/>
             <Button Content="Отмена" 
                     Click="Cancel_Click"
-                    IsCancel="True"  Background="#FFEC675A" Padding="10,5" HorizontalAlignment="Left" Height="30" Margin="10,0,0,0"/>
+                    IsCancel="True"  Background="#FFEC675A" Padding="10,0,10,0" HorizontalAlignment="Left" Height="25" Margin="10,0,0,0"/>
         </StackPanel>
     </Grid>
 </Window>

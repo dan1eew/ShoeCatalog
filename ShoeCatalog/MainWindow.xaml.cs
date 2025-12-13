@@ -1,9 +1,9 @@
-﻿using ShoeCatalog.Properties;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Windows;
+using System.Windows.Controls;
 
 namespace ShoeCatalog
 {
@@ -112,9 +112,9 @@ namespace ShoeCatalog
         /// <summary>Применяет настройки видимости столбцов</summary>
         private void ApplyColumnVisibility()
         {
-            if (ListViewProducts.View is System.Windows.Controls.GridView gridView)
+            if (ListViewProducts.View is GridView gridView)
             {
-                foreach (System.Windows.Controls.GridViewColumn column in gridView.Columns)
+                foreach (GridViewColumn column in gridView.Columns)
                 {
                     string columnName = GetColumnName(column);
                     if (columnName != null && _columnVisibility.ContainsKey(columnName))
@@ -126,7 +126,7 @@ namespace ShoeCatalog
         }
 
         /// <summary>Получает название столбца по объекту колонки</summary>
-        private string GetColumnName(System.Windows.Controls.GridViewColumn column)
+        private string GetColumnName(GridViewColumn column)
         {
             return column.Header?.ToString() switch
             {
@@ -167,6 +167,41 @@ namespace ShoeCatalog
         private static void ShowError(string title, string message)
         {
             MessageBox.Show(message, title, MessageBoxButton.OK, MessageBoxImage.Error);
+        }
+
+        // Поиск
+        private void TextBoxSearch_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            ApplyFilters();
+        }
+
+        /// <summary>Метод поиска</summary>
+        private void ApplyFilters()
+        {
+            if (_products == null) return;
+
+            var filteredProducts = _products.AsEnumerable();
+
+            if (TextBoxSearch != null && !string.IsNullOrEmpty(TextBoxSearch.Text))
+            {
+                string searchText = TextBoxSearch.Text.ToLower();
+                filteredProducts = filteredProducts.Where(p =>
+                    (p.NameProduct?.ToLower().Contains(searchText) == true) ||
+                    (p.CategoryProduct?.ToLower().Contains(searchText) == true) ||
+                    (p.DescriptionProduct?.ToLower().Contains(searchText) == true) ||
+                    (p.Producer?.ToLower().Contains(searchText) == true) ||
+                    (p.Supplier?.ToLower().Contains(searchText) == true) ||
+                    (p.Article?.ToLower().Contains(searchText) == true));
+            }
+
+            UpdateProductList(filteredProducts.ToList());
+        }
+
+        /// <summary>Постоянное обновление при поиске</summary>
+        private void UpdateProductList(List<Product> products)
+        {
+            var productViewModels = products.Select(p => new ProductViewModel(p)).ToList();
+            ListViewProducts.ItemsSource = productViewModels;
         }
     }
 }

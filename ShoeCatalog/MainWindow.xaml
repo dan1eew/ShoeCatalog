@@ -19,15 +19,21 @@
                 </Grid.ColumnDefinitions>
 
                 <StackPanel Grid.Column="0" Orientation="Horizontal" VerticalAlignment="Center" Height="40">
-                    <Image x:Name="IconImage" Width="40" Height="40" Source="/Icon.jpg" Margin="10,0,0,0"/>
-                    <TextBlock x:Name="TitleTextBlock" Text="Shoe Catalog" FontSize="22" FontWeight="Bold" VerticalAlignment="Center" Margin="10,0,0,0"/>
+                    <Image x:Name="IconImage" Width="40" Height="40" Source="/IconDark.JPG" Margin="10,0,0,0"/>
+                    <TextBlock x:Name="TitleTextBlock" Text="Shoe Catalog" FontSize="24" FontWeight="Bold" VerticalAlignment="Center" Margin="10,0,0,0"/>
+                    <Label Content="ver. 1.r10.sf-f" HorizontalAlignment="Left" VerticalAlignment="Top"/>
                 </StackPanel>
 
                 <StackPanel Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Left">
                     <Button x:Name="RefreshButton" Content="Обновить список" Click="RefreshButton_Click" 
-                            Background="#00FA9A" Padding="10,5" HorizontalAlignment="Right" Height="30" Margin="0,0,10,0"/>
+                            Background="#00FA9A" Padding="10,5" HorizontalAlignment="Right" Height="30" Margin="0,0,10,0" BorderBrush="#FF007B0D" FontSize="14"/>
                     <Button x:Name="SettingsButton" Content="Настроить столбцы..." Click="SettingsButton_Click"
-                            Background="#00FA9A" Padding="10,5" HorizontalAlignment="Right" Height="30"/>
+                            Background="#00FA9A" Padding="10,5" HorizontalAlignment="Right" Height="30" BorderBrush="#FF007B0D" FontSize="14"/>
+                </StackPanel>
+                <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right">
+                    <TextBox x:Name="TextBoxSearch" Height="25" Width="300" BorderBrush="Black" 
+                             FontSize="14" Background="#FFE8E8E8" VerticalContentAlignment="Center" 
+                             Foreground="Black" HorizontalAlignment="Right" Margin="0,0,10,0" TextChanged="TextBoxSearch_TextChanged"/>
                 </StackPanel>
             </Grid>
         </Border>

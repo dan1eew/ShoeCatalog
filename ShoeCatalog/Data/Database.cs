@@ -7,8 +7,7 @@ namespace ShoeCatalog
     ///<summary>Статический класс для работы с базой данных</summary>
     public static class Database
     {
-        private static readonly string connectionString =
-            @"Data Source=(LocalDB)\6;AttachDbFilename=|DataDirectory|TableProducts.mdf;Integrated Security=True";
+        private static readonly string connectionString = @"Data Source=(LocalDB)\6;AttachDbFilename=|DataDirectory|TableProducts.mdf;Integrated Security=True";
 
         ///<summary>Получает список товаров из базы данных</summary>
         /// <returns>DataTable с данными о товарах</returns>

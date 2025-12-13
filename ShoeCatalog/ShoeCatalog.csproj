@@ -109,9 +109,6 @@
     <Folder Include="Images\" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Icon.JPG" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="IconDark.JPG" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

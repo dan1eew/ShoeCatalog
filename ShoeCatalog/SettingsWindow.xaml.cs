@@ -81,51 +81,7 @@ namespace ShoeCatalog
             }
         }
 
-        /// <summary>
-        /// Выбрать все столбцы
-        /// </summary>
-        private void SelectAll_Click(object sender, RoutedEventArgs e)
-        {
-            foreach (var checkBox in _checkBoxes.Values)
-            {
-                if (checkBox.IsEnabled)
-                    checkBox.IsChecked = true;
-            }
-        }
-
-        /// <summary>
-        /// Установить настройки по умолчанию
-        /// </summary>
-        private void Default_Click(object sender, RoutedEventArgs e)
-        {
-            // Настройки по умолчанию из ТЗ
-            var defaultSettings = new Dictionary<string, bool>
-            {
-                { "Фото", true },
-                { "Артикул", false },
-                { "Наименование", true },
-                { "Категория", true },
-                { "Производитель", false },
-                { "Поставщик", false },
-                { "Цена", true },
-                { "Скидка", true },
-                { "Кол-во", true },
-                { "Описание", false },
-                { "Ед. изм.", false }
-            };
-
-            foreach (var kvp in defaultSettings)
-            {
-                if (_checkBoxes.TryGetValue(kvp.Key, out var checkBox) && checkBox.IsEnabled)
-                {
-                    checkBox.IsChecked = kvp.Value;
-                }
-            }
-        }
-
-        /// <summary>
-        /// Сохранить изменения
-        /// </summary>
+        /// <summary>Сохранить изменения</summary>
         private void OK_Click(object sender, RoutedEventArgs e)
         {
             // Обновляем словарь видимости
@@ -157,12 +113,47 @@ namespace ShoeCatalog
             DialogResult = true;
         }
 
-        /// <summary>
-        /// Отменить изменения
-        /// </summary>
+        /// <summary>Отменить изменения</summary>
         private void Cancel_Click(object sender, RoutedEventArgs e)
         {
             DialogResult = false;
+        }
+
+        /// <summary>Столбцы по умолчанию</summary>
+        private void Default(object sender, RoutedEventArgs e)
+        {
+            var defaultSettings = new Dictionary<string, bool>
+            {
+                { "Фото", true },
+                { "Артикул", false },
+                { "Наименование", true },
+                { "Категория", true },
+                { "Производитель", false },
+                { "Поставщик", false },
+                { "Цена", true },
+                { "Скидка", true },
+                { "Кол-во", true },
+                { "Описание", false },
+                { "Ед. изм.", false }
+            };
+
+            foreach (var kvp in defaultSettings)
+            {
+                if (_checkBoxes.TryGetValue(kvp.Key, out var checkBox) && checkBox.IsEnabled)
+                {
+                    checkBox.IsChecked = kvp.Value;
+                }
+            }
+        }
+
+        /// <summary>Выбрать все столбцы</summary>
+        private void SelectAll(object sender, RoutedEventArgs e)
+        {
+            foreach (var checkBox in _checkBoxes.Values)
+            {
+                if (checkBox.IsEnabled)
+                    checkBox.IsChecked = true;
+            }
         }
     }
 }
