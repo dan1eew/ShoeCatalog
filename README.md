@@ -3,7 +3,7 @@
 
 `Также другие задачи:`
 [12](https://github.com/dan1eew/ShoeCatalog/tree/settingsFind)
-
+[3](https://github.com/dan1eew/ShoeCatalog/tree/ver-1.r10.sf-s)
 
 `Быстрый старт:`
 -----------------------------------
